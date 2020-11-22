@@ -8,14 +8,6 @@
     tools:context=".SplashActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/pokemon_logo"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-15dp" />
-
-    <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
         android:layout_height="200dp"
