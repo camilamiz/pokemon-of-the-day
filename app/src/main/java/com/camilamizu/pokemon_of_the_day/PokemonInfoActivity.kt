@@ -9,6 +9,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 import java.net.URL
 
 class PokemonInfoActivity : AppCompatActivity() {
@@ -25,7 +26,7 @@ class PokemonInfoActivity : AppCompatActivity() {
       val stringRequest = StringRequest(
         Request.Method.GET, url,
         Response.Listener<String> {response ->
-          pokemonInfoText.text = "Response is: ${response.substring(0, 500)}"
+          pokemonInfoText.text = "Response is: ${JSONObject(response).get("name")}"
         },
         Response.ErrorListener { pokemonInfoText.text = "That didn't work!" })
 
