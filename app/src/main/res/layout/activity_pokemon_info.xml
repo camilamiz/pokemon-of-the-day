@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".PokemonInfoActivity">
 
+    <TextView
+        android:id="@+id/txvPokemonInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="221dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
