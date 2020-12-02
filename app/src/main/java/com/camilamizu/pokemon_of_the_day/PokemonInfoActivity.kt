@@ -2,12 +2,15 @@ package com.camilamizu.pokemon_of_the_day
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.reflect.Type
 
 class PokemonInfoActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,16 +31,20 @@ class PokemonInfoActivity : AppCompatActivity() {
       val stringRequest = StringRequest(
         Request.Method.GET, url,
         Response.Listener<String> {response ->
-          pokemonInfoID.text = "$pokemonNumber"
-          pokemonInfoName.text = "${JSONObject(response).get("name")}"
-          pokemonInfoHeight.text = "${JSONObject(response).get("height")}"
-          pokemonInfoWeight.text = "${JSONObject(response).get("weight")}"
+          pokemonInfoID.text = pokemonNumber.toString()
+          pokemonInfoName.text = JSONObject(response).get("name").toString().capitalize()
+          pokemonInfoHeight.text = JSONObject(response).get("height").toString()
+          pokemonInfoWeight.text = JSONObject(response).get("weight").toString()
+//          val pokemonImage = "${JSONObject(response).get("sprites").get("front_default")}"
 
+          val types = JSONObject(response).getJSONArray("types")
+          val allTypes : MutableList<String> = ArrayList()
+          for (i in 0 until types.length()) {
+            val elementType = types.getJSONObject(i).get("type")
+            allTypes.add("$elementType")
+          }
 
-//          val types = JSONObject(response).get("types")
-//          for (i in 0 until arrayOf(types).size) {
-//            pokemonInfoTypes.text = "${types(i)}"
-//          }
+          pokemonInfoTypes.text = "$allTypes"
 
 
 //          pokemonInfoTypes.text = "${JSONObject(response).get("types")}"
