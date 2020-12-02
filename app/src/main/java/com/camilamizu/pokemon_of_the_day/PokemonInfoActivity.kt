@@ -1,6 +1,5 @@
 package com.camilamizu.pokemon_of_the_day
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -8,17 +7,20 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
-import java.net.URL
 
 class PokemonInfoActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_pokemon_info)
 
-      val pokemonNumber = (0..894).random()
+      val pokemonNumber = (0..899).random()
       val pokemonInfoText : TextView = findViewById(R.id.txvPokemonInfoText)
+      val pokemonInfoID : TextView = findViewById(R.id.txvPokemonInfoID)
+      val pokemonInfoName : TextView = findViewById(R.id.txvPokemonInfoName)
+      val pokemonInfoHeight : TextView = findViewById(R.id.txvPokemonInfoHeight)
+      val pokemonInfoWeight : TextView = findViewById(R.id.txvPokemonInfoWeight)
+      val pokemonInfoTypes : TextView = findViewById(R.id.txvPokemonInfoTypes)
       val url = "https://pokeapi.co/api/v2/pokemon/$pokemonNumber/"
 
       val queue = Volley.newRequestQueue(this)
@@ -26,7 +28,19 @@ class PokemonInfoActivity : AppCompatActivity() {
       val stringRequest = StringRequest(
         Request.Method.GET, url,
         Response.Listener<String> {response ->
-          pokemonInfoText.text = "Response is: ${JSONObject(response).get("name")}"
+          pokemonInfoID.text = "$pokemonNumber"
+          pokemonInfoName.text = "${JSONObject(response).get("name")}"
+          pokemonInfoHeight.text = "${JSONObject(response).get("height")}"
+          pokemonInfoWeight.text = "${JSONObject(response).get("weight")}"
+
+
+//          val types = JSONObject(response).get("types")
+//          for (i in 0 until arrayOf(types).size) {
+//            pokemonInfoTypes.text = "${types(i)}"
+//          }
+
+
+//          pokemonInfoTypes.text = "${JSONObject(response).get("types")}"
         },
         Response.ErrorListener { pokemonInfoText.text = "That didn't work!" })
 
