@@ -1,5 +1,6 @@
 package com.camilamizu.pokemon_of_the_day
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -17,21 +18,28 @@ class PokemonInfoActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_pokemon_info)
 
-      val pokemonNumber = (0..899).random()
+      val pokemonSearch = intent.getStringExtra("INTENT_POKEMON_SEARCH")
+
       val pokemonInfoText : TextView = findViewById(R.id.txvPokemonInfoText)
       val pokemonInfoID : TextView = findViewById(R.id.txvPokemonInfoID)
       val pokemonInfoName : TextView = findViewById(R.id.txvPokemonInfoName)
       val pokemonInfoHeight : TextView = findViewById(R.id.txvPokemonInfoHeight)
       val pokemonInfoWeight : TextView = findViewById(R.id.txvPokemonInfoWeight)
       val pokemonInfoTypes : TextView = findViewById(R.id.txvPokemonInfoTypes)
-      val url = "https://pokeapi.co/api/v2/pokemon/$pokemonNumber/"
+
+      val pokemonReference = if (pokemonSearch != null) {
+        pokemonSearch
+      } else {
+        (0..899).random().toString()
+      }
+      val url = "https://pokeapi.co/api/v2/pokemon/$pokemonReference/"
 
       val queue = Volley.newRequestQueue(this)
 
       val stringRequest = StringRequest(
         Request.Method.GET, url,
         Response.Listener<String> {response ->
-          pokemonInfoID.text = pokemonNumber.toString()
+          pokemonInfoID.text = JSONObject(response).get("id").toString()
           pokemonInfoName.text = JSONObject(response).get("name").toString().capitalize()
           pokemonInfoHeight.text = JSONObject(response).get("height").toString()
           pokemonInfoWeight.text = JSONObject(response).get("weight").toString()

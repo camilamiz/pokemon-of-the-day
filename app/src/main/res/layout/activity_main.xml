@@ -45,20 +45,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txvMainSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:backgroundTintMode="add"
-        android:hint="Type a pokémon name"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnMainSearch"
-        app:layout_constraintEnd_toEndOf="@+id/btnMainSearch"
-        app:layout_constraintStart_toStartOf="@+id/btnMainSearch" />
-
     <Button
         android:id="@+id/btnMainSearch"
         android:layout_width="150dp"
@@ -72,5 +58,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnMainCatch" />
+
+    <EditText
+        android:id="@+id/edtMainPokemon"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@android:color/white"
+        android:ems="10"
+        android:hint="Type a pokemon"
+        android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btnMainSearch"
+        app:layout_constraintEnd_toEndOf="@+id/btnMainSearch"
+        app:layout_constraintStart_toStartOf="@+id/btnMainSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
