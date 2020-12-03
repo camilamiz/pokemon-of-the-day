@@ -39,23 +39,20 @@ class PokemonInfoActivity : AppCompatActivity() {
       val stringRequest = StringRequest(
         Request.Method.GET, url,
         Response.Listener<String> {response ->
-          pokemonInfoID.text = JSONObject(response).get("id").toString()
-          pokemonInfoName.text = JSONObject(response).get("name").toString().capitalize()
-          pokemonInfoHeight.text = JSONObject(response).get("height").toString()
-          pokemonInfoWeight.text = JSONObject(response).get("weight").toString()
-//          val pokemonImage = "${JSONObject(response).get("sprites").get("front_default")}"
+          val jObject = JSONObject(response)
+          pokemonInfoID.text = jObject.get("id").toString()
+          pokemonInfoName.text = jObject.get("name").toString().capitalize()
+          pokemonInfoHeight.text = jObject.get("height").toString()
+          pokemonInfoWeight.text = jObject.get("weight").toString()
+          val pokemonImageURL = jObject.getJSONObject("sprites").getString("front_default")
 
-          val types = JSONObject(response).getJSONArray("types")
           val allTypes : MutableList<String> = ArrayList()
+          val types = jObject.getJSONArray("types")
           for (i in 0 until types.length()) {
-            val elementType = types.getJSONObject(i).get("type")
+            val elementType = types.getJSONObject(i).getJSONObject("type").getString("name")
             allTypes.add("$elementType")
           }
-
           pokemonInfoTypes.text = "$allTypes"
-
-
-//          pokemonInfoTypes.text = "${JSONObject(response).get("types")}"
         },
         Response.ErrorListener { pokemonInfoText.text = "That didn't work!" })
 
