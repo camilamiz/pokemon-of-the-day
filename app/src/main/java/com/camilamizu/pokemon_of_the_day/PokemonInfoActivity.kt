@@ -52,7 +52,7 @@ class PokemonInfoActivity : AppCompatActivity() {
             val elementType = types.getJSONObject(i).getJSONObject("type").getString("name")
             allTypes.add("$elementType")
           }
-          pokemonInfoTypes.text = "$allTypes"
+          pokemonInfoTypes.text = "${allTypes.joinToString()}"
         },
         Response.ErrorListener { pokemonInfoText.text = "That didn't work!" })
 
