@@ -1,6 +1,8 @@
 package com.camilamizu.pokemon_of_the_day
 
 import android.content.Context
+import android.icu.number.NumberFormatter.with
+import android.icu.number.NumberRangeFormatter.with
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -9,6 +11,8 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_pokemon_info.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.reflect.Type
@@ -44,7 +48,9 @@ class PokemonInfoActivity : AppCompatActivity() {
           pokemonInfoName.text = jObject.get("name").toString().capitalize()
           pokemonInfoHeight.text = jObject.get("height").toString()
           pokemonInfoWeight.text = jObject.get("weight").toString()
+
           val pokemonImageURL = jObject.getJSONObject("sprites").getString("front_default")
+          Picasso.get().load(pokemonImageURL).into(imvPokemonInfoAvatar)
 
           val allTypes : MutableList<String> = ArrayList()
           val types = jObject.getJSONArray("types")
