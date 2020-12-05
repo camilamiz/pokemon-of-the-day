@@ -64,6 +64,5 @@ class PokemonInfoActivity : AppCompatActivity() {
 
       queue.add(stringRequest)
 
-
   }
 }
