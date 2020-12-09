@@ -10,10 +10,10 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        Handler(Looper.getMainLooper()).postDelayed( {
+        Handler(Looper.getMainLooper()).postDelayed({
           val mIntent = Intent(this, MainActivity::class.java)
           startActivity(mIntent)
           finish()
-        }, 4000 )
+        }, 4000)
     }
 }

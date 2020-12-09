@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                 edtMainPokemon.error = "Type a pokemon name or number"
                 edtMainPokemon.requestFocus()
             } else {
-                Toast.makeText(this, "You chose $pokemonSearch!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "You've chosen $pokemonSearch!", Toast.LENGTH_SHORT).show()
                 val mIntentSearch = Intent(this, PokemonInfoActivity::class.java)
                 mIntentSearch.putExtra("INTENT_POKEMON_SEARCH", pokemonSearch)
                 startActivity(mIntentSearch)
