@@ -1,6 +1,6 @@
 # pokemon-of-the-day
 
-This app was developed for study purposes. 
+This mobile app was developed for study purposes using Android Studio. 
 
 It uses the [Pokémon api](https://pokeapi.co/) to retrieve some Pokémon information and load their images via url.
 
